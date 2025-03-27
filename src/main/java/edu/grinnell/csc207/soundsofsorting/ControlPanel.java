@@ -11,6 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import edu.grinnell.csc207.soundsofsorting.sortevents.SortEvent;
+import edu.grinnell.csc207.soundsofsorting.sortevents.CompareEvent;
 import edu.grinnell.csc207.soundsofsorting.sorts.Sorts;
 
 /**
@@ -49,7 +50,7 @@ public class ControlPanel extends JPanel {
                 return Sorts.bubbleSort(arr);
             case "Merge":
                 return Sorts.mergeSort(arr);
-            case("Quick"):
+            case "Quick":
                 return Sorts.quickSort(arr);
             default:
                 throw new IllegalArgumentException("generateEvents");
@@ -134,12 +135,10 @@ public class ControlPanel extends JPanel {
                     return;
                 }
                 isSorting = true;
-                
-                // TODO: fill me in!
-                // 1. Create the sorting events list
-                // 2. Add in the compare events to the end of the list
-                List<SortEvent<Integer>> events = new java.util.LinkedList<>();
-                
+                List<SortEvent<Integer>> events = generateEvents("Bubble", notes.getNotes());
+                for (int i = 0; i < notes.getNotes().length - 1; i++) {
+                    events.add(new CompareEvent(notes.getNotes(), i, i + 1));
+                }
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
                 //       by creating an _anonymous subclass_ of the TimeTask
@@ -153,11 +152,12 @@ public class ControlPanel extends JPanel {
                     public void run() {
                         if (index < events.size()) {
                             SortEvent<Integer> e = events.get(index++);
-                            // TODO: fill me in!
-                            // 1. Apply the next sort event.
-                            // 3. Play the corresponding notes denoted by the
-                            //    affected indices logged in the event.
-                            // 4. Highlight those affected indices.
+                            e.apply(notes.getNotes());
+                            List<Integer> indexes = e.getAffectedIndices();
+                            for (int i = 0; i < indexes.size(); i++) {
+                                scale.playNote(indexes.get(i), e.isEmphasized());
+                                notes.highlightNote(indexes.get(i));
+                            }
                             panel.repaint();
                         } else {
                             this.cancel();
