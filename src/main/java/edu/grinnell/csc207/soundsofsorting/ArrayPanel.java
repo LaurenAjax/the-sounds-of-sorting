@@ -30,7 +30,7 @@ public class ArrayPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.clearRect(0, 0, getWidth(), getHeight());
+        g.clearRect(0, 0, width, height);
         int length = notes.getNotes().length;
         int rectWidth = width / length;
         int rectHeight;
