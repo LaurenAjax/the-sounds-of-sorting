@@ -268,6 +268,13 @@ public class Sorts {
         return list;
     }
     
+    /**
+     * Applies all non CompareEvent SortEvents in the list to the array
+     * 
+     * @param <T> the carrier type of the array
+     * @param l the array to sort
+     * @param events a list of all SortEvent done in the sort
+     */
     public static <T extends Comparable<? super T>> void eventSort(T[] l, List<SortEvent<T>> events) {
         for(int i = 0; i < events.size(); i++) {
             if (!(events.get(i) instanceof CompareEvent)) {
