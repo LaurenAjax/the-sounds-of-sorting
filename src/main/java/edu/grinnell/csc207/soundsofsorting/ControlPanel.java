@@ -156,12 +156,14 @@ public class ControlPanel extends JPanel {
                             SortEvent<Integer> e = events.get(index++);
                             e.apply(notes.getNotes());
                             List<Integer> indexes = e.getAffectedIndices();
+                            notes.clearAllHighlighted();
                             for (int i = 0; i < indexes.size(); i++) {
                                 scale.playNote(indexes.get(i), e.isEmphasized());
                                 notes.highlightNote(indexes.get(i));
                             }
                             panel.repaint();
                         } else {
+                            notes.clearAllHighlighted();
                             this.cancel();
                             panel.repaint();
                             isSorting = false;
