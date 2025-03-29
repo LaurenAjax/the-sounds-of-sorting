@@ -135,7 +135,9 @@ public class ControlPanel extends JPanel {
                     return;
                 }
                 isSorting = true;
-                List<SortEvent<Integer>> events = generateEvents("Bubble", notes.getNotes());
+                Integer[] arr = new Integer[notes.getNotes().length];
+                System.arraycopy(notes.getNotes(), 0, arr, 0, arr.length);
+                List<SortEvent<Integer>> events = generateEvents((String) sorts.getSelectedItem(), arr);
                 for (int i = 0; i < notes.getNotes().length - 1; i++) {
                     events.add(new CompareEvent(notes.getNotes(), i, i + 1));
                 }
