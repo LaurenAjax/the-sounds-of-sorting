@@ -12,6 +12,12 @@ public class SwapEvent<T> implements SortEvent<T> {
     private int firstIndex;
     private int secondIndex;
 
+    /**
+     * Creates a new SwapEvent
+     * 
+     * @param ind1 the index swapping elements
+     * @param ind2 the index the other index is swapping elements with
+     */
     public SwapEvent(int ind1, int ind2) {
         firstIndex = ind1;
         secondIndex = ind2;
