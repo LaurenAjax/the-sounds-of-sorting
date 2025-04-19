@@ -52,6 +52,8 @@ public class ControlPanel extends JPanel {
                 return Sorts.mergeSort(arr);
             case "Quick":
                 return Sorts.quickSort(arr);
+            case "My":
+                return Sorts.mySort(arr);
             default:
                 throw new IllegalArgumentException("generateEvents");
         }
@@ -101,7 +103,8 @@ public class ControlPanel extends JPanel {
             "Insertion",
             "Bubble",
             "Merge",
-            "Quick"
+            "Quick",
+            "My"
         });
         add(sorts);
         
@@ -137,9 +140,10 @@ public class ControlPanel extends JPanel {
                 isSorting = true;
                 Integer[] arr = new Integer[notes.getNotes().length];
                 System.arraycopy(notes.getNotes(), 0, arr, 0, arr.length);
-                List<SortEvent<Integer>> events = generateEvents((String) sorts.getSelectedItem(), arr);
+                List<SortEvent<Integer>> events = 
+                        generateEvents((String) sorts.getSelectedItem(), arr);
                 for (int i = 0; i < notes.getNotes().length - 1; i++) {
-                    events.add(new CompareEvent(notes.getNotes(), i, i + 1));
+                    events.add(new CompareEvent(i, i + 1));
                 }
                 // NOTE: The Timer class repetitively invokes a method at a
                 //       fixed interval.  Here we are specifying that method
