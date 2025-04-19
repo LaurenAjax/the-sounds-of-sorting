@@ -8,14 +8,18 @@ import java.util.ArrayList;
  * indices in the array.
  * @param <T>
  */
-public class CompareEvent<T extends Comparable <T>> implements SortEvent<T> {
+public class CompareEvent<T extends Comparable<? super T>> implements SortEvent<T> {
     
-    private T[] newArr;
     private int firstIndex;
     private int secondIndex;
 
-    public CompareEvent(T[] array, int ind1, int ind2) {
-        newArr = array;
+    /**
+     * Creates a new CompareEvent
+     * 
+     * @param ind1 the index being compared
+     * @param ind2 the other index being compared
+     */
+    public CompareEvent(int ind1, int ind2) {
         firstIndex = ind1;
         secondIndex = ind2;
     }
