@@ -2,6 +2,12 @@
 
 Author: _Lauren Ajax_
 
+Change Log: 
+* I added my mySort to the Sorting Visualizer, so
+its process of sorting can be seen and heard.
+* I improved the style of my code according to 
+maven checkstyle.
+
 ## Resources
 
 *   Java 17.0.14
