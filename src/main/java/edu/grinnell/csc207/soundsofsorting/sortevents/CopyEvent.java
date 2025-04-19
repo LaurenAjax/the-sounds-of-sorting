@@ -13,6 +13,13 @@ public class CopyEvent<T> implements SortEvent<T> {
     private int firstIndex;
     private int secondIndex;
 
+    /**
+     * Creates a new CopyEvent
+     * 
+     * @param array the array that is being copied from
+     * @param ind1 the index being copied to
+     * @param ind2 the index being copied to
+     */
     public CopyEvent(T[] array, int ind1, int ind2) {
         newArr = array;
         firstIndex = ind1;
